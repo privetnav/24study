@@ -1,0 +1,19 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+.red {
+    color: red;
+}
+.courseDesc {
+    font-size: 80%;
+    margin: 10px 0px;
+}
+.title {
+
+}
+.listLesson {
+    font-size: 20px;
+}
+a:hover {
+    color: red;
+}
