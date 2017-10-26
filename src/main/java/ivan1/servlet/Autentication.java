@@ -15,23 +15,9 @@ public class Autentication extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("utf-8");
         req.getRequestDispatcher("header.jsp?title=Список курсов").include(req, resp);
-        /*
-        resp.getWriter().println("<!DOCTYPE html>");
-        resp.getWriter().println("<html>");
-        resp.getWriter().println("\t<head>");
-        resp.getWriter().println("<meta charset=\"utf-8\">");
-        resp.getWriter().println("\t<title>Авторизация пользователя</title>");
-        resp.getWriter().println("\t</head>");
-        resp.getWriter().println("\t<body>");
-/**/
-        resp.getWriter().println("Hello! Привет!");
-        resp.getWriter().println("<img src=\"images/dog.jpeg\">");
-        resp.getWriter().println("Die world!");
 
-/*
-        resp.getWriter().println("\t</body>");
-        resp.getWriter().println("</html>");
-        */
+        resp.getWriter().println("Доступ закрыт");
+
         req.getRequestDispatcher("footer.jsp").include(req, resp);
     }
     @Override
@@ -51,7 +37,16 @@ public class Autentication extends HttpServlet {
             //            req.getRequestDispatcher("/hello").forward(req, resp);
            //req.getRequestDispatcher("Courses").forward(req, resp);
         } else {
-            getServletContext().getRequestDispatcher("/").forward(req, resp);
+            resp.setCharacterEncoding("utf-8");
+            req.getRequestDispatcher("header.jsp?title=Ошибка входа").include(req, resp);
+
+            resp.getWriter().println("<p>Доступ закрыт, авторизуйтесь или зарегистрируйтесь.</p>");
+
+
+            req.getRequestDispatcher("loginForm.jsp").include(req, resp);
+
+            req.getRequestDispatcher("footer.jsp").include(req, resp);
+            //getServletContext().getRequestDispatcher("/").forward(req, resp);
         }
 
 

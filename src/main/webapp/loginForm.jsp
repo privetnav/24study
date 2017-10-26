@@ -1,9 +1,7 @@
 <% request.setCharacterEncoding("utf-8"); %>
 <%@ page pageEncoding="UTF-8"%>
-<jsp:include page="/header.jsp" >
-  <jsp:param name="title" value="Вход на сайт" />
-</jsp:include>
 
+  <h1 class="title">Вход на сайт</h1>
   <form id="myForm" method="post" action="/auth">
     <table cellpadding="10">
       <tr>
@@ -17,8 +15,8 @@
         <td><input type="password" name="password" required></td>
       </tr>
       <tr>
-        <td colspan="2"><input type="submit" value="Войти"/></td>
+        <td><input type="submit" value="Войти"/></td>
+        <td><a href="/registration.jsp" class="regBut">Регистрация</a></td>
       </tr>
     </table>
   </form>
-<jsp:include page="/footer.jsp" />

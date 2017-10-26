@@ -24,25 +24,14 @@ public class Registration extends HttpServlet {
 
         resp.setCharacterEncoding("utf-8");
         req.getRequestDispatcher("header.jsp?title=Список курсов").include(req, resp);
-        /*
-        resp.getWriter().println("<!DOCTYPE html>");
-        resp.getWriter().println("<html>");
-        resp.getWriter().println("\t<head>");
-        resp.getWriter().println("<meta charset=\"utf-8\">");
-        resp.getWriter().println("\t<title>Авторизация пользователя</title>");
-        resp.getWriter().println("\t</head>");
-        resp.getWriter().println("\t<body>");
-*/
+
         if(rg.newRegistration(login, password, name, family, patronymic, city) != 0) {
             resp.getWriter().println("Регистрация прошла успешно");
         }
         else {
             resp.getWriter().println("При ошибке произошла ошибка");
         }
-/*
-        resp.getWriter().println("\t</body>");
-        resp.getWriter().println("</html>");
-        */
+
         req.getRequestDispatcher("footer.jsp").include(req, resp);
     }
 }

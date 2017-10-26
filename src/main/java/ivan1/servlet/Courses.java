@@ -10,21 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class Courses extends HttpServlet {
+    private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(Courses.class);
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("utf-8");
         req.getRequestDispatcher("header.jsp?title=Список курсов").include(req, resp);
-        /*
-        resp.getWriter().println("<!DOCTYPE html>");
-        resp.getWriter().println("<html>");
-        resp.getWriter().println("\t<head>");
-        resp.getWriter().println("<meta charset=\"utf-8\">");
-        resp.getWriter().println("\t<title>Список курсов</title>");
-        resp.getWriter().println("\t</head>");
-        resp.getWriter().println("\t<body>");
-        resp.getWriter().println("Список курсов.");
-*/
+
         if(req.getSession() != null && req.getSession().getAttribute("isAuth").equals(true)) {
             try {
+                log.debug("Курсы были выведены");
                 ivan1.entities.Courses courseList = CourseDAO.getAll();
                 resp.getWriter().println("<h1 class=\"title\">Список курсов</h1>");
                 resp.getWriter().println("<ul class=\"listLesson\">");
@@ -34,32 +27,17 @@ public class Courses extends HttpServlet {
                 resp.getWriter().println("</ul>");
             } catch (CourseDAO.CourseDAOException e) {
                 e.printStackTrace();
+
             }
         }
         else {
             resp.getWriter().println("Доступ закрыт.");
         }
-            /*
-           //Users userList = UserDAO.getAll();
-            /*
-            for(User user : userList.getUsers()){
-                user.printUser();
-            }
-        }
-        else {
-            resp.getWriter().println("Доступ закрыт");
-        }
-
-/*
-        resp.getWriter().println("Hello! Привет!");
-        resp.getWriter().println("<img src=\"images/dog.jpeg\">");
-        resp.getWriter().println("Die world!");
-*/
         req.getRequestDispatcher("footer.jsp").include(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        resp.getWriter().println("Доступ закрыт.");
     }
 }
