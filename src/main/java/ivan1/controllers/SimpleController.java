@@ -1,9 +1,8 @@
-package ru.inno.controllers;
+package ivan1.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -18,12 +17,14 @@ public class SimpleController {
     @Autowired
     RequestService requestService;
 
-    @RequestMapping("/singleton")
+    @RequestMapping(value = "/singleton")
     public ModelAndView getSingleton() {
         ModelAndView modelAndView = new ModelAndView("hello");
-        modelAndView.addObject("message", singletonService.getValue());
+        modelAndView.addObject("summa", singletonService.getValue());
         return modelAndView;
     }
+
+
 
     @RequestMapping("/prototype")
     public ModelAndView getPrototype() {

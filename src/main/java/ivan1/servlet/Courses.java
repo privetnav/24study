@@ -10,24 +10,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class Courses extends HttpServlet {
-    private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(Courses.class);
+    //private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(Courses.class);
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("utf-8");
         req.getRequestDispatcher("header.jsp?title=Список курсов").include(req, resp);
 
         if(req.getSession() != null && req.getSession().getAttribute("isAuth").equals(true)) {
             try {
-                log.debug("Курсы были выведены");
+                //log.debug("Курсы были выведены");
                 ivan1.entities.Courses courseList = CourseDAO.getAll();
                 resp.getWriter().println("<h1 class=\"title\">Список курсов</h1>");
                 resp.getWriter().println("<ul class=\"listLesson\">");
                 for(Course course : courseList.getCourses()) {
-                    resp.getWriter().println("<li><a href=\"/lesson\">"+ course.getCourseName() + "</a><div class=\"courseDesc\">" + course.getCourseDescription() +  "</div></li>");
+                    resp.getWriter().println("<li><a href=\"/lessons?id=" + course.getId() + "\">"+ course.getCourseName() + "</a><div class=\"courseDesc\">" + course.getCourseDescription() +  "</div></li>");
                 }
                 resp.getWriter().println("</ul>");
             } catch (CourseDAO.CourseDAOException e) {
                 e.printStackTrace();
-
             }
         }
         else {

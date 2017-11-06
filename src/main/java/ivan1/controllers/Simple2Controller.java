@@ -1,4 +1,4 @@
-package ru.inno.controllers;
+package ivan1.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

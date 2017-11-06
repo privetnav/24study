@@ -12,7 +12,7 @@ public class Course {
     public void setCourseDescription(String courseDescription) {
         this.courseDescription = courseDescription;
     }
-
+    @XmlElement
     public String getCourseDescription() {
 
         return courseDescription;

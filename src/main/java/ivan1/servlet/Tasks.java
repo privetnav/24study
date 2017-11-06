@@ -1,7 +1,7 @@
 package ivan1.servlet;
 
-import ivan1.db.dao.LessonDAO;
-import ivan1.entities.Lesson;
+import ivan1.db.dao.TaskDAO;
+import ivan1.entities.Task;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,40 +9,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class Lessons extends HttpServlet{
+public class Tasks extends HttpServlet {
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("utf-8");
-        req.getRequestDispatcher("header.jsp?title=Список тем").include(req, resp);
+        req.getRequestDispatcher("header.jsp?title=Разбор темы").include(req, resp);
 
         if(req.getSession() != null && req.getSession().getAttribute("isAuth").equals(true)) {
             if(null != req.getParameter("id")) {
                 int id = Integer.parseInt(req.getParameter("id"));
-                //resp.getWriter().println(id);
                 try {
-                    ivan1.entities.Lessons lessonList = LessonDAO.getAll(id);
-                    resp.getWriter().println("<h1 class=\"title\">Список тем</h1>");
-                    if (lessonList.size() > 0) {
+                    ivan1.entities.Tasks taskList = TaskDAO.getAll(id);
+                    resp.getWriter().println("<h1 class=\"title\"></h1>");
+                    if (taskList.size() > 0) {
                         resp.getWriter().println("<ul class=\"listLesson\">");
-                        for (Lesson lesson : lessonList.getLessons()) {
-                            resp.getWriter().println("<li><a href=\"/tasks?id=" + lesson.getId() + "\">" + lesson.getLessonName() + "</a><div class=\"courseDesc\">" + lesson.getLessonDescription() + "</div></li>");
+                        for (Task task : taskList.getTasks()) {
+                            resp.getWriter().println("<li><h2>" + task.getTaskName() + "</h2><div class=\"courseDesc\">" + task.getTaskInfo() + "</div></li>");
                         }
                         resp.getWriter().println("</ul>");
                     }
                     else {
-                        resp.getWriter().println("<p>Список курсов пуст.</p>");
+                        resp.getWriter().println("<p>Список тем пуст.</p>");
                     }
 
-                } catch (LessonDAO.LessonDAOException e) {
+                } catch (TaskDAO.TaskDAOException e) {
                     e.printStackTrace();
                 }
             }
             else {
-                resp.getWriter().println("Курс не найден");
+                resp.getWriter().println("Лекция не найдена");
             }
         }
         else {
             resp.getWriter().println("Доступ закрыт.");
         }
+
         req.getRequestDispatcher("footer.jsp").include(req, resp);
     }
 }

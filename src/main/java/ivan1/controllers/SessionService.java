@@ -1,4 +1,4 @@
-package ru.inno.controllers;
+package ivan1.controllers;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;

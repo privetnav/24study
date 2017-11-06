@@ -3,6 +3,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
+    <servlet>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/mvc-dispatcher-servlet.xml
+        </param-value>
+    </context-param>
+
     <servlet>
         <servlet-name>Authentication</servlet-name>
         <servlet-class>ivan1.servlet.Autentication</servlet-class>
@@ -27,5 +47,21 @@
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/reg</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Lessons</servlet-name>
+        <servlet-class>ivan1.servlet.Lessons</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Lessons</servlet-name>
+        <url-pattern>/lessons</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Tasks</servlet-name>
+        <servlet-class>ivan1.servlet.Tasks</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Tasks</servlet-name>
+        <url-pattern>/tasks</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -1,4 +1,4 @@
-package ru.inno.controllers;
+package ivan1.controllers;
 
 public class FinalController
 
